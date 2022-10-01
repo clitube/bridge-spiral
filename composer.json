@@ -1,0 +1,52 @@
+{
+    "name": "clitube/bridge-spiral",
+    "description": "Bridge between CliTube and Spiral Framework",
+    "keywords": [
+        "spiral",
+        "clitube"
+    ],
+    "homepage": "https://github.com/clitube/bridge-spiral",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "roxblnfk",
+            "email": "roxblnfk@ya.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "roxblnfk/clitube": "^0.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "CliTube\\Bridge\\Spiral": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CliTube\\Bridge\\Spiral\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "psalm": "vendor/bin/psalm ./src"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "spiral": {
+            "bootloaders": [
+                "CliTube\\Bridge\\Spiral\\Bootloader\\CliTubeBootloader"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
