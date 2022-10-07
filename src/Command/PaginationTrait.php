@@ -7,9 +7,13 @@ namespace CliTube\Bridge\Spiral\Command;
 use CliTube\Bridge\Spiral\Paginator\OffsetPaginator;
 use CliTube\Component\Paginator;
 use Spiral\Pagination\PaginableInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @mixin \Spiral\Console\Command
+ * Pagination helper for console commands.
+ * Should be used in a child of {@see \Spiral\Console\Command}.
+ *
+ * @property-read ?OutputInterface $output
  */
 trait PaginationTrait
 {
@@ -19,7 +23,7 @@ trait PaginationTrait
             $data instanceof \CliTube\Contract\Pagination\Paginator => $data,
             $data instanceof PaginableInterface && $data instanceof \IteratorAggregate && $data instanceof \Countable
                 => OffsetPaginator::create($data),
-            default => throw new InvalidArgumentException('Can not paginate that data.'),
+            default => throw new \InvalidArgumentException('Can not paginate that data.'),
         };
         $core = (new \CliTube\Core($this->output));
         $core->createComponent(Paginator::class, [
