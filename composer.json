@@ -16,7 +16,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "clitube/clitube": "^0.2.1",
+        "clitube/clitube": "^0.3.0",
+        "spiral/console": "^2.10|^3.0",
         "spiral/pagination": "^3.0"
     },
     "require-dev": {
