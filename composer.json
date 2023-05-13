@@ -16,14 +16,14 @@
     ],
     "require": {
         "php": "^8.1",
-        "clitube/clitube": "^0.3.0",
-        "spiral/console": "^2.10|^3.0",
+        "clitube/clitube": "^0.3.2",
+        "spiral/console": "^3.0",
         "spiral/pagination": "^3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
         "phpunit/phpunit": "^9.5",
-        "vimeo/psalm": "^4.27"
+        "vimeo/psalm": "^5.11"
     },
     "autoload": {
         "psr-4": {
