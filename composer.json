@@ -3,7 +3,9 @@
     "description": "Bridge between CliTube and Spiral Framework",
     "keywords": [
         "spiral",
-        "clitube"
+        "clitube",
+        "cli",
+        "paginator"
     ],
     "homepage": "https://github.com/clitube/bridge-spiral",
     "license": "MIT",
@@ -16,11 +18,12 @@
     ],
     "require": {
         "php": "^8.1",
-        "clitube/clitube": "^0.3.2",
+        "clitube/clitube": "^0.3.4",
         "spiral/console": "^3.0",
         "spiral/pagination": "^3.0"
     },
     "require-dev": {
+        "cycle/orm": "^2.3",
         "mockery/mockery": "^1.5",
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^5.11"

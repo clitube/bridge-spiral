@@ -17,7 +17,7 @@ use Traversable;
  * @template TPaginator of Countable&IteratorAggregate&PaginableInterface
  * @template TItemType
  */
-class OffsetPaginator extends BaseOffsetPaginator
+final class OffsetPaginator extends BaseOffsetPaginator
 {
     /** @var null|Closure(TItemType $item): array<array-key, scalar> */
     private ?Closure $itemConverter = null;
@@ -32,13 +32,20 @@ class OffsetPaginator extends BaseOffsetPaginator
 
     public function __clone()
     {
+        $this->buffer = null;
         $this->paginator = clone $this->paginator;
     }
 
-    public static function create(PaginableInterface&IteratorAggregate&Countable $paginator): static
-    {
+    public static function create(
+        PaginableInterface&IteratorAggregate&Countable $paginator,
+        bool $useDefaultCounter = true,
+    ): self {
         $paginator = clone $paginator;
-        return new static($paginator);
+        $offsetPaginator = new self($paginator);
+
+        return $useDefaultCounter
+            ? $offsetPaginator->withCountCalculator(\count(...))
+            : $offsetPaginator;
     }
 
     /**
@@ -102,7 +109,10 @@ class OffsetPaginator extends BaseOffsetPaginator
 
     protected function getContent(): array
     {
-        $this->buffer ??= \iterator_to_array($this->paginator->getIterator(), false);
+        $this->buffer ??= \iterator_to_array(
+            $this->paginator->limit($this->limit)->offset($this->offset)->getIterator(),
+            false,
+        );
         return $this->buffer;
     }
 }
